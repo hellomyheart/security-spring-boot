@@ -22,7 +22,7 @@ public class SpringDataUserDetailsService implements UserDetailsService {
         //登录账号
         System.out.println("username="+s);
 
-        UserDetails userDetails = User.withUsername("zhangsan").password("123").authorities("p1").build();
+        UserDetails userDetails = User.withUsername("zhangsan").password("$2a$10$FE4FJyBfVaOjgS34uVYaUe1kEirFDHuQKVqbBYMCeSSeW2fBGOAAG").authorities("p1").build();
         return userDetails;
     }
 }
