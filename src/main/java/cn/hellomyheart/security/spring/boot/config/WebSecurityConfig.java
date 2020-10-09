@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  * @description security配置类
@@ -57,7 +58,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin() //允许表单登录
                 .loginPage("/login-view")//登录页面
                 .loginProcessingUrl("/login")//指定登录处理的url
-                .successForwardUrl("/login-success"); //自定义登录成功的页面地址
+                .successForwardUrl("/login-success") //自定义登录成功的页面地址
+                .and()
+                .logout()//自定义退出url
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login-view?logout")
+                //运行get方式退出
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"));
 
     }
 
