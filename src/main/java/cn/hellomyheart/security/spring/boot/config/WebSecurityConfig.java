@@ -50,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
 //                .csrf().disable() //屏蔽csrf的方式一
                 .authorizeRequests()
-                .antMatchers("/r/r1").hasAuthority("p1") //权限设置
+                .antMatchers("/r/r1").hasAuthority("p1") //权限设置，基于权限授权
                 .antMatchers("/r/r2").hasAuthority("p2")
                 .antMatchers("/r/**").authenticated() //所有/r/**,必须认证
                 .anyRequest().permitAll()  //其他请求可以访问
