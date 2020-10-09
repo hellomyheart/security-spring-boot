@@ -1,5 +1,6 @@
 package cn.hellomyheart.security.spring.boot.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,10 +24,12 @@ public class UserController {
     }
 
     @GetMapping(value = "/r/r1", produces = {"text/plain;charset=utf-8"})
+    @PreAuthorize("hasAnyAuthority('p1','p3')") //拥有p1或者p3都可以访问
     public String r1() {
         return getUsername() + "访问资源r1";
     }
 
+    @PreAuthorize("hasAuthority('p2')") //拥有p2可以访问
     @GetMapping(value = "/r/r2", produces = {"text/plain;charset=utf-8"})
     public String r2() {
         return getUsername() + "访问资源r2";

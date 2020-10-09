@@ -2,6 +2,7 @@ package cn.hellomyheart.security.spring.boot.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -22,6 +23,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
  * @date: 2020/10/8 下午1:41
  */
 @Configuration
+@EnableGlobalMethodSecurity(securedEnabled = true,prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     //定义用户信息服务（查询用户信息）
@@ -50,8 +52,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
 //                .csrf().disable() //屏蔽csrf的方式一
                 .authorizeRequests()
-                .antMatchers("/r/r1").hasAuthority("p1") //权限设置，基于权限授权
-                .antMatchers("/r/r2").hasAuthority("p2")
+//                .antMatchers("/r/r1").hasAuthority("p1") //权限设置，基于权限授权
+//                .antMatchers("/r/r2").hasAuthority("p2")
                 .antMatchers("/r/**").authenticated() //所有/r/**,必须认证
                 .anyRequest().permitAll()  //其他请求可以访问
                 .and()
